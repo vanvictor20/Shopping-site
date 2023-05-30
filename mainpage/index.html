@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/43124feaf5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-NwFfTzlTnD8fO/LMq3rJgozu0zKjyO2QFzmsOwRJb/X8WbJveSW0L0R6YdX9U8W6U0p6w4z4N59GNYtk8Wuj5g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>TokyoSportsCenter</title> <!-- This is the title of the webpage -->
+
+
+  <script defer src="script.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+    <!-- Top Nav Bar -->
+    <nav class="nav">
+      <img class="nav__logo" id="logo" />
+      <a class="navbar-brand" href="">TokyoSportsCenter</a>
+      <ul class="nav__links">
+        <li class="nav__item">
+          <a class="nav__link" href="#section--1">Events</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#section--2">Products</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#section--3">Testimonials</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--btn btn--show-modal" href="#">Log in</a>
+        </li>
+        <li class="nav__item">
+          <a id="open-cart-icon" href="#"><i class="fa-solid fa-cart-shopping"
+              style="color:#00ffdd; font-size: 2em;"></i> </a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <div class="header__title"> <!-- This is the header text -->
+      <h1>
+        Experience
+        <!-- Green highlight effect -->
+        <span class="highlight">Effortless</span>
+        Shopping<br />
+        Buying for Your
+        <span class="highlight">Favorite</span>
+        Sports Attire
+      </h1>
+      <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
+    </div>
+  </header>
+
+  <section class="section section--hidden" id="section--1"> <!-- Second section of the page  -->
+    <div class="section__title">
+      <h2 class="section__description">Events</h2>
+      <h3 class="section__header">Get to participate in some of our Galas.</h3>
+    </div>
+
+    <div class="operations">
+      <div class="operations__tab-container">
+        <button class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1">
+          <span>01</span>Today
+        </button>
+        <button class="btn operations__tab operations__tab--2" data-tab="2">
+          <span>02</span>This Weekend
+        </button>
+        <button class="btn operations__tab operations__tab--3" data-tab="3">
+          <span>03</span>Coming Soon
+        </button>
+      </div>
+      <div class="slider1">
+        <img src="event_filter/IMAGES/ucl.png" id="slide1">
+        <img src="event_filter/IMAGES/sportDefault.png" id="slide2">
+        <img src="event_filter/IMAGES/festivalsDefault.jpg" id="slide3">
+        <img src="event_filter/IMAGES/haaland.gif" id="slide4">
+        <div class="slider1-nav">
+          <a href="#slide1"></a>
+          <a href="#slide2"></a>
+          <a href="#slide3"></a>
+          <a href="#slide4"></a>
+        </div>
+        <div class="text">
+          <p>
+            Join us for the sport fun<br>
+            <span class="small">Date 12/09/2023</span>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow section" id="section--2"> <!-- Section 3 of the page -->
+    <h1 class="catalogueTitle catalogue-animation ">Our Products</h1>
+    <div
+      style="font-size: 1.5rem; text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+      Simply hover over the cards to get a sneak peek of our products,<br>or click on a category to dive deeper into the
+      world of sports<br>and purchase your dream sport equipment 🎟️
+    </div>
+    <div class="team">
+      <ul class="auto-grid" role="list">
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/festivals.jpg');">
+            <h2 class="card__name">Festivals</h2>
+            <p class="catP">Discover the hottest festivals in town and experience the ultimate sport scene.</p>
+          </a>
+        </li>
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/sport.jpg');">
+            <h2 class="card__name">Sport Arenas</h2>
+            <p class="catP">Get your adrenaline pumping with our thrilling sports centers.</p>
+          </a>
+        </li>
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/football\ boots.jpeg');">
+            <h2 class="card__name">Boots</h2>
+            <p class="catP">Immerse yourself in the beauty that comes along with owning that dream boot. </p>
+          </a>
+        </li>
+
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/ball.jpeg');">
+            <h2 class="card__name">balls</h2>
+            <p class="catP">Indulge in the world of sport by getting the best ball for your play. </p>
+          </a>
+        </li>
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/training.jpeg');">
+            <h2 class="card__name">Training Equipment</h2>
+            <p class="catP">Get your fitness up and running with state of the art equipment. </p>
+          </a>
+        </li>
+        <li>
+          <a href="event_filter/TICKET.HTML" target="_blank" class="cardGrid"
+            style="background-image: url('images/running.jpeg');">
+            <h2 class="card__name">Other</h2>
+            <p class="catP">Explore a diverse range of unique sports activities that don't fit into the other
+              categories.</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="section section--hidden" id="section--3"> <!-- The section for testimonials  -->
+    <div class="section__title section__title--testimonials">
+      <h2 class="section__description">Not sure yet?</h2>
+      <h3 class="section__header">
+        What our clients say about us
+      </h3>
+    </div>
+
+    <div class="slider">
+      <div class="slide slide--1">
+        <div class="testimonial">
+          <h5 class="testimonial__header">Best Place ever!</h5>
+          <blockquote class="testimonial__text">
+            🙌🏆 Grateful for the incredible impact your sports center had on our child's football journey!
+            Expert coaching, supportive environment, and life lessons. Their skills and confidence skyrocketed!
+            Thank you for shaping their passion and nurturing their talent. #Grateful #SportsCenter
+          </blockquote>
+          <!-- <address class="testimonial__author">
+              <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
+              <h6 class="testimonial__name">Aarav Lynn</h6>
+              <p class="testimonial__location">San Francisco, USA</p>
+            </address> -->
+        </div>
+      </div>
+
+      <div class="slide slide--2">
+        <div class="testimonial">
+          <h5 class="testimonial__header">
+            The one stop for all your sporting equipment.
+          </h5>
+          <blockquote class="testimonial__text">
+            🏀⚽🎾 A true game-changer! Your sports center is a one-stop destination for all our sports needs.
+            From football to basketball and tennis, you've got it all covered.
+            Top-notch facilities, expert coaching, and a vibrant community.
+            Thanks for providing a hub where our athletic aspirations can thrive! #SportsCenter #AllInOne
+          </blockquote>
+          <!-- <address class="testimonial__author">
+              <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
+              <h6 class="testimonial__name">Miyah Miles</h6>
+              <p class="testimonial__location">London, UK</p>
+            </address> -->
+        </div>
+      </div>
+
+      <div class="slide slide--3">
+        <div class="testimonial">
+          <h5 class="testimonial__header">
+            Finally about our sport gallas!
+          </h5>
+          <blockquote class="testimonial__text">
+            🔥🏆 Unforgettable moments! The sporting events at your sports center were absolutely electric!
+            The thrill, the energy, and the intense competition made for an unforgettable experience.
+            Thank you for bringing us the excitement and making every event a true spectacle.
+            We can't wait for more heart-pounding action! #ExcitingSports #UnforgettableMoments
+          </blockquote>
+          <!-- <address class="testimonial__author">
+              <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
+              <h6 class="testimonial__name">Francisco Gomes</h6>
+              <p class="testimonial__location">Lisbon, Portugal</p>
+            </address> -->
+        </div>
+      </div>
+
+      <!-- <div class="slide"><img src="img/img-1.jpg" alt="Photo 1" /></div>
+        <div class="slide"><img src="img/img-2.jpg" alt="Photo 2" /></div>
+        <div class="slide"><img src="img/img-3.jpg" alt="Photo 3" /></div>
+        <div class="slide"><img src="img/img-4.jpg" alt="Photo 4" /></div> -->
+      <button class="slider__btn slider__btn--left">
+        < <!-- Slider button left -->
+          <button class="slider__btn slider__btn--right">></button>
+          <div class="dots"></div>
+    </div>
+  </section>
+
+
+  <section class="section section--feedback section--hidden">
+    <div class="section__title">
+      <h2 class="section__description">You have something to say ?</h2>
+      <h3 class="section__header">Give us your feedback !</h3>
+    </div>
+
+    <div class="field-group">
+      <form action="index.html" method="post">
+        <textarea name="feedback" id="feedback" cols="30" rows="10" class="textarea-field"
+          placeholder="Enter Feedback"></textarea>
+        <!-- <label for="feedback" class="textarea-label">Enter your message</label> -->
+        <input type="submit" name="fsubmit" class="btn btn--show-modal">
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--sign-up section--hidden">
+    <div class="section__title">
+      <h3 class="section__header">
+        The best day to shop with us is TODAY. The second best is now!
+      </h3>
+    </div>
+    <button class="btn btn--show-modal">Open your free account today!</button>
+  </section>
+
+  <div class="modal hidden"> <!-- This is the go to page when one clicks on open today -->
+    <button class="btn--close-modal">&times;</button>
+    <h2 class="modal__header">
+      Open your account <br />
+      in just <span class="highlight"> 5 minutes</span>
+    </h2>
+    <form class="modal__form form-box login">
+      <form action="#">
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-envelope"></i></span>
+          <input type="email" name="email" required />
+          <label>Email</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+          <input type="password" name="password" required />
+          <label>Password</label>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox" name="remember" />Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" name="signin" class="btn">Sign In</button>
+        <div class="login-register">
+          <p>
+            Don't have an account?
+            <a href="login_signup_page\index.html" target="_blank" class="register-link">Sign up</a>
+          </p>
+        </div>
+      </form>
+  </div>
+  <div class="overlay hidden"></div>
+
+
+
+  <!-- CART MODAL WINDOWS -->
+  <div class="modal-container hidden">
+    <div class="modal">
+      <button class="btn--close-modal close-button" id="close-btn">&times;</button>
+      <!-- hne -->
+
+      <h2 class="modal__header">
+        Shopping Cart
+      </h2>
+      <form class="modal__form form-box login action=" #"">
+
+        <div <div class="cart-items-container">
+          <div class="cart-box">
+            <img src="images/ball.jpeg" alt="" class="cart-img">
+            <div class="detail-box">
+              <div class="cart-product-title">Ball</div>
+              <div class="cart-price">50,000</div>
+              <input type="number" value="1" class="cart-quantity">
+            </div>
+            <!-- Remove Cart -->
+            <i class='fas fa-trash-alt cart-remove'></i>
+          </div>
+          <div class="cart-box">
+            <img src="images/training.jpeg" alt="" class="cart-img">
+            <div class="detail-box">
+              <div class="cart-product-title">Hoops</div>
+              <div class="cart-price">100,000shs</div>
+              <input type="number" value="1" class="cart-quantity">
+            </div>
+            <!-- Remove Cart -->
+            <i class='fas fa-trash-alt cart-remove'></i>
+          </div>
+
+        </div>
+
+        <div class="payer">
+          <hr>
+          <div>
+            <div class="remember-forgot">
+              <div class=”total-title”>Sub-Total : </div>
+              <div class=”total-price”>$0.0</div>
+            </div>
+
+            <button type="submit" name="signin" class="btn">Checkout</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="overlay hidden"></div>
+
+
+  <footer class="footer">
+    <ul class="footer__nav">
+      <li class="footer__item">
+        <a class="footer__link" href="#">About</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" target="_blank" href="event_filter/TICKET.HTML">Pricing</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Privacy Policy</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" target="_blank" href="contact/contact.html">Contact Us</a>
+      </li>
+    <!-- </ul>
+    <img class="footer__logo" /> -->
+  </footer>
+
+
+</body>
+
+</html>
