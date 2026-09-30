@@ -1,84 +1,50 @@
-const openCartBtn = document.getElementById('open-cart-btn');
-const closeBtn = document.getElementById('close-btn');
-const modal = document.querySelector('.modal-container');
-const overlay = document.querySelector('.overlay');
+"use strict";
 
-// Modal window
-const openModal = function (e) {
+const openCartBtn = document.getElementById("open-cart-btn");
+const closeBtn = document.getElementById("close-btn");
+const modal = document.querySelector(".modal-container");
+const overlay = document.querySelector(".overlay");
+
+const openModal = (e) => {
   e.preventDefault();
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
 
-const closeModal = function () {
+const closeModal = () => {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
 };
 
-openCartBtn.addEventListener("click",openModal);
-closeBtn.addEventListener("click",closeModal);
+openCartBtn.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeModal);
 
-//card
+// Cart: remove items, change quantities, keep the total in sync
+const parsePrice = (text) => parseFloat(text.replace(/[^\d.]/g, "")) || 0;
 
-if (document.readyState == "loading") {
-document. addEventListener("DOMContentLoaded", ready);
-} else {
-ready ();
-}
+const updateTotal = () => {
+  let total = 0;
+  document.querySelectorAll(".cart-box").forEach((box) => {
+    const price = parsePrice(box.querySelector(".cart-price").textContent);
+    const quantity = Number(box.querySelector(".cart-quantity").value);
+    total += price * quantity;
+  });
+  document.querySelector(".total-price").textContent = `$${total.toFixed(2)}`;
+};
 
-//si on veut supprimer tickets + augmenter total
-function ready () {
-var reomveCartButtons = document. getElementsByClassName ("cart-remove");
-console. log (reomveCartButtons);
-for (var i = 0; i < reomveCartButtons.length; i++) {
-var button = reomveCartButtons [i];
-button.addEventListener ("click", removeCartItem);
-}
-var quantityInputs = document.getElementsByClassName('cart-quantity')
-for (var i = 0; i < quantityInputs.length; i++){
-  var input = quantityInputs[i]
-  input.addEventListener('change',quantityChanged); 
-}
-/*
-var addCart = document. getElementsByClassName ("add-cart");
-for (var i = 0; i < addCart.length; i++) {
-var button = addCart [i];
-button.addEventListener("click", addCartClicked);
-}
-*/
-}
+document.querySelectorAll(".cart-remove").forEach((button) =>
+  button.addEventListener("click", (e) => {
+    e.target.closest(".cart-box").remove();
+    updateTotal();
+  })
+);
 
-function quantityChanged (event) {
-var input = event.target;
-if (isNaN(input.value) || input.value <= 0) {
-input.value = 1;
-}
-updatetotal ();
-}
+document.querySelectorAll(".cart-quantity").forEach((input) =>
+  input.addEventListener("change", (e) => {
+    const value = Number(e.target.value);
+    if (!Number.isFinite(value) || value <= 0) e.target.value = 1;
+    updateTotal();
+  })
+);
 
-function removeCartItem (event) {
-var buttonClicked = event.target;
-buttonClicked.parentElement.remove ();
-updatetotal();
-}
-
-
-/*
-function updatetotal (){
-var cartContent = document.getElementsByClassName ("cart-content")[0];
-var cartBoxes = cartContent.getElementsByClassName ("cart-box");
-var total = 0;
-for (var i = 0; 1 < cartBoxes.length; i++) {
-  var cartBox = cartBoxes[i];
-  var priceElement = cartBox.getElementsByClassName ("cart-price")[0];
-  var quantityElement = cartBox.getElementsByClassName ("cart-quantity")[0];
-  var price = parseFloat(priceElement.innerText.replace("$",""));
-  var quantity = quantityElement.value;
-  total = total + price * quantity;
-  //si nb avec virgulexs
-  total= Math.round(total*100) / 100 ;
-document.getElementsByClassName("total-price")[0]. innerText = "$" + total;
-}
-}
-*/
-
+updateTotal();

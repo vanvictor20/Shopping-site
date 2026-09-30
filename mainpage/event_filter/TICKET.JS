@@ -1,5 +1,5 @@
+"use strict";
 
-document.querySelector(".dropdown-menu").addEventListener('click',(event)=>{
-    const newGenre = event.target.textContent;
-    document.querySelector(".btn").textContent = newGenre
-})
+document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
+  document.querySelector(".btn").textContent = e.target.textContent;
+});

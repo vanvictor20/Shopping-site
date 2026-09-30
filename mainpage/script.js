@@ -41,8 +41,7 @@ document.addEventListener("keydown", function (e) {
 });
 
 // Button Scrolling
-btnScrollTo.addEventListener("click", function (e) {
-  const s1coords = section1.getBoundingClientRect();
+btnScrollTo.addEventListener("click", function () {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
@@ -52,12 +51,10 @@ btnScrollTo.addEventListener("click", function (e) {
 
 document.querySelector(".nav__links").addEventListener("click", function (e) {
   e.preventDefault();
-  console.log(e.target);
 
   // Matching strategy
   if (e.target.classList.contains("nav__link")) {
     const id = e.target.getAttribute("href");
-    console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
@@ -66,7 +63,6 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
-  // console.log(clicked);
 
   // Guard clause
   if (!clicked) return;
@@ -106,11 +102,9 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 ////////////////
 const header = document.querySelector(".header");
 const navHeight = nav.getBoundingClientRect();
-// console.log(navHeight);
 
 const stickyNav = function (entries) {
   const [entry] = entries;
-  // console.log(entry);
 
   if (!entry.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
@@ -128,7 +122,6 @@ const allSections = document.querySelectorAll(".section");
 
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  // console.log(entry);
 
   // Guard clause
   if (!entry.isIntersecting) return;
@@ -144,23 +137,17 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  // section.classList.add('section--hidden');
 });
 
 // Slider
 const slider = function () {
   const slides = document.querySelectorAll(".slide");
-  console.log(slides);
   const btnLeft = document.querySelector(".slider__btn--left");
   const btnRight = document.querySelector(".slider__btn--right");
   const dotContainer = document.querySelector(".dots");
 
   let curSlide = 0;
   const maxSlides = slides.length;
-
-  // const slider = document.querySelector('.slider');
-  // slider.style.transform = 'scale(0.4) translateX(-800px)';
-  // slider.style.overflow = 'visible';
 
   // Functions
   const createDots = function () {
@@ -214,19 +201,16 @@ const slider = function () {
   btnLeft.addEventListener("click", prevSlide);
 
   document.addEventListener("keydown", function (e) {
-    console.log(e);
     if (e.key === "ArrowLeft") prevSlide();
     if (e.key === "ArrowRight") nextSlide();
   });
 
   dotContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("dots__dot")) {
-      // console.log('DOT');
       const { slide } = e.target.dataset;
-      // console.log(slide);
-      goToSlide(slide);
-      activateDot(slide);
-      curSlide = slide;
+      curSlide = Number(slide);
+      goToSlide(curSlide);
+      activateDot(curSlide);
     }
   });
 };
@@ -260,67 +244,45 @@ function animateLetters() {
 
 animateLetters();
 
+// Cart modal
+const openCartIcon = document.getElementById("open-cart-icon");
+const cartModalContainer = document.querySelector(".modal-container");
+const closeButton = document.querySelector(".close-button");
 
+const parsePrice = (text) => parseFloat(text.replace(/[^\d.]/g, "")) || 0;
 
+const updateCartTotal = function () {
+  let total = 0;
+  cartModalContainer.querySelectorAll(".cart-box").forEach((box) => {
+    const price = parsePrice(box.querySelector(".cart-price").textContent);
+    const quantity = Number(box.querySelector(".cart-quantity").value);
+    total += price * quantity;
+  });
+  cartModalContainer.querySelector(".total-price").textContent =
+    total.toLocaleString();
+};
 
-// CART WINDOW JS
-// Find the cart icon link and the cart modal container
-const openCartIcon = document.getElementById('open-cart-icon');
-const cartModalContainer = document.querySelector('.modal-container');
+openCartIcon.addEventListener("click", function (e) {
+  e.preventDefault();
+  cartModalContainer.classList.remove("hidden");
+});
 
-// Add an event listener to the cart icon link
-openCartIcon.addEventListener('click', showCartModal);
+closeButton.addEventListener("click", function () {
+  cartModalContainer.classList.add("hidden");
+});
 
-function showCartModal() {
-  // Show the cart modal container
-  cartModalContainer.classList.remove('hidden');
-  
-  // Get the cart content element and clear any existing items
-  const cartContent = document.querySelector('.cart-content');
-  cartContent.innerHTML = '';
-  
-  // Loop through the cart items and add HTML elements for each
-  for (let i = 0; i < cartItems.length; i++) {
-    const item = cartItems[i];
-    
-    // Create HTML elements for the item
-    const cartBox = document.createElement('div');
-    cartBox.classList.add('cart-box');
-    const cartImg = document.createElement('img');
-    cartImg.classList.add('cart-img');
-    cartImg.src = item.image;
-    const cartTitle = document.createElement('h3');
-    cartTitle.classList.add('cart-title');
-    cartTitle.innerText = item.name;
-    const cartPrice = document.createElement('span');
-    cartPrice.classList.add('cart-price');
-    cartPrice.innerText = '$' + item.price;
-    const cartQuantity = document.createElement('input');
-    cartQuantity.classList.add('cart-quantity');
-    cartQuantity.type = 'number';
-    cartQuantity.min = 1;
-    cartQuantity.value = item.quantity;
-    const removeButton = document.createElement('button');
-    removeButton.classList.add('cart-remove');
-    removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    
-    // Add the elements to the cart box
-    cartBox.appendChild(cartImg);
-    cartBox.appendChild(cartTitle);
-    cartBox.appendChild(cartPrice);
-    cartBox.appendChild(cartQuantity);
-    cartBox.appendChild(removeButton);
-    
-    // Add the cart box to the cart content element
-    cartContent.appendChild(cartBox);
-  }
-  
-}
+cartModalContainer.querySelectorAll(".cart-remove").forEach((button) =>
+  button.addEventListener("click", function (e) {
+    e.target.closest(".cart-box").remove();
+    updateCartTotal();
+  })
+);
 
+cartModalContainer.querySelectorAll(".cart-quantity").forEach((input) =>
+  input.addEventListener("change", function (e) {
+    if (!(Number(e.target.value) > 0)) e.target.value = 1;
+    updateCartTotal();
+  })
+);
 
-const closeButton = document.querySelector('.close-button');
-closeButton.addEventListener('click', hideCartModal);
-
-function hideCartModal() {
-  cartModalContainer.classList.add('hidden');
-}
+updateCartTotal();
